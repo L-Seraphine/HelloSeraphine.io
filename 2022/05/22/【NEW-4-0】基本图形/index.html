@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【NEW-4.0】R-基本图形 | Seraphineの小窝</title><meta name="keywords" content="R语言,条形图,饼图,直方图,核密度图,箱线图,点图"><meta name="author" content="Seraphine"><meta name="copyright" content="Seraphine"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="利用R语言绘制基本图形，例如：条形图，饼图，直方图，核密度图，箱线图，点图等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NEW-4.0】R-基本图形">
+<meta property="og:url" content="https://l-seraphine.github.io/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-4-0%E3%80%91%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2/index.html">
+<meta property="og:site_name" content="Seraphineの小窝">
+<meta property="og:description" content="利用R语言绘制基本图形，例如：条形图，饼图，直方图，核密度图，箱线图，点图等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-13_20-17-33.jpg/Hexo">
+<meta property="article:published_time" content="2022-05-22T13:19:28.000Z">
+<meta property="article:modified_time" content="2022-05-22T13:26:11.291Z">
+<meta property="article:author" content="Seraphine">
+<meta property="article:tag" content="R语言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-13_20-17-33.jpg/Hexo"><link rel="shortcut icon" href="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/182557effemeofmcbfbazf.png.icon.ico"><link rel="canonical" href="https://l-seraphine.github.io/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-4-0%E3%80%91%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/HelloSeraphine.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bc7be48b0df89ca565096c232f26d34c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/HelloSeraphine.io/',
+  algolia: undefined,
+  localSearch: {"path":"/HelloSeraphine.io/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":15,"position":"top","messagePrev":"本文最后更新于","messageNext":"，部分内容可能与现实不符或者相关链接失效，请反馈给我"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Seraphine","link":"链接: ","source":"来源: Seraphineの小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【NEW-4.0】R-基本图形',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-22 21:26:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://thirdqq.qlogo.cn/g?b=qq&amp;nk=738232585&amp;s=100" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/HelloSeraphine.io/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/HelloSeraphine.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/HelloSeraphine.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/HelloSeraphine.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/anime/"><i class="fa-fw fas fa-video"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/updateLog/"><i class="fa-fw fas fa-wrench"></i><span> 更新日志</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-13_20-17-33.jpg/Hexo')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/HelloSeraphine.io/">Seraphineの小窝</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/HelloSeraphine.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/anime/"><i class="fa-fw fas fa-video"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/HelloSeraphine.io/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/updateLog/"><i class="fa-fw fas fa-wrench"></i><span> 更新日志</span></a></div><div class="menus_item"><a class="site-page" href="/HelloSeraphine.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【NEW-4.0】R-基本图形</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-22T13:19:28.000Z" title="发表于 2022-05-22 21:19:28">2022-05-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-22T13:26:11.291Z" title="更新于 2022-05-22 21:26:11">2022-05-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/HelloSeraphine.io/categories/R%E8%AF%AD%E8%A8%80/">R语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这不是基本图形的说明使用，例如常见的条形图，饼图，直方图等，此内容可以当作快速查阅手册。</p>
+<h1 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h1><h2 id="简单条形图"><a href="#简单条形图" class="headerlink" title="简单条形图"></a>简单条形图</h2><p><strong>条形图通过函数<code>barplot()</code>来实现</strong>，函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">barplot<span class="punctuation">(</span>height<span class="punctuation">,</span> width <span class="operator">=</span> <span class="number">1</span><span class="punctuation">,</span> space <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">        names.arg <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> legend.text <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> beside <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span></span><br><span class="line">        horiz <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> density <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> angle <span class="operator">=</span> <span class="number">45</span><span class="punctuation">,</span></span><br><span class="line">        col <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> border <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;fg&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        main <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> sub <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> xlab <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ylab <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">        xlim <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ylim <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> xpd <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> <span class="built_in">log</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        axes <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> axisnames <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span></span><br><span class="line">        cex.axis <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;cex.axis&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> cex.names <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;cex.axis&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        inside <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> plot <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> axis.lty <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span> offset <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        add <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> ann <span class="operator">=</span> <span class="operator">!</span>add <span class="operator">&amp;&amp;</span> par<span class="punctuation">(</span><span class="string">&quot;ann&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> args.legend <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ...<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>height</code>：接收一个向量参数，根据向量参数内容绘制图形</strong></li>
+<li><strong><code>horiz = TRUE</code></strong>：设置为<code>TRUE</code>则图形会生成水平条形图</li>
+<li><strong><code>main</code>：图形标题</strong></li>
+<li><strong><code>xlab</code>：X 轴标签</strong></li>
+<li><strong><code>ylab</code>：Y 轴标签</strong></li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">barplot<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">,</span>horiz <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>main <span class="operator">=</span> <span class="string">&#x27;这是标题&#x27;</span><span class="punctuation">,</span></span><br><span class="line">        xlab<span class="operator">=</span><span class="string">&#x27;这是X轴&#x27;</span><span class="punctuation">,</span>ylab<span class="operator">=</span><span class="string">&#x27;这是Y轴&#x27;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512200201549.png" alt="image-20220512200201549" style="zoom:50%;" /></p>
+<p>如果<strong>希望标签距离图表更近一些</strong>，可以通过<strong>额外设置<code>mtext</code>来增加外边框的文本标签</strong>，例如：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">barplot<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">,</span>horiz <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>main <span class="operator">=</span> <span class="string">&#x27;这是标题&#x27;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">,</span>ylab<span class="operator">=</span><span class="string">&#x27;这是Y轴&#x27;</span><span class="punctuation">)</span></span><br><span class="line">mtext<span class="punctuation">(</span><span class="string">&#x27;这是X轴&#x27;</span><span class="punctuation">,</span>side<span class="operator">=</span><span class="number">1</span><span class="punctuation">,</span>line <span class="operator">=</span> <span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512202945242.png" alt="image-20220512202945242" style="zoom:50%;" /></p>
+<blockquote>
+<p>如果需要绘制的变量是一个因子或者有序型因子，可以直接使用<code>plot()</code>绘制垂直条形图</p>
+</blockquote>
+<h2 id="堆砌条形图和分组条形图"><a href="#堆砌条形图和分组条形图" class="headerlink" title="堆砌条形图和分组条形图"></a>堆砌条形图和分组条形图</h2><p><strong>如果传入的<code>Height</code>参数不是向量而是一个矩阵，则绘制的结果是堆砌条形图或者分组条形图</strong>。<strong>堆砌条形图和分组条形图取决于参数<code>beside=FALSE/TRUE</code></strong>，<strong>如果为<code>TRUE</code>，则矩阵中的每一列表示一个分组，各列的值将并列而不是堆砌；如果为<code>FALSE</code>，则矩阵中的每一列都生成图中的一个条形，其高度取决于其值。</strong></p>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opar <span class="operator">=</span> par<span class="punctuation">(</span>no.readonly <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 将图形分割成一行两列</span></span><br><span class="line">par<span class="punctuation">(</span>mfrow<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 绘制堆砌条形图</span></span><br><span class="line">barplot<span class="punctuation">(</span>matrix<span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">20</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 绘制分组条形图</span></span><br><span class="line">barplot<span class="punctuation">(</span>matrix<span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">20</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span>beside <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">par<span class="punctuation">(</span>opar<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512204141414.png" alt="image-20220512204141414" style="zoom: 67%;" /></p>
+<h2 id="均值条形图"><a href="#均值条形图" class="headerlink" title="均值条形图"></a>均值条形图</h2><p>可以将数据计算出各种平均值，中位值等结果生成相关条形图，代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">barplot<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>summary<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        names.arg <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;Min.&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;1st Qu.&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;Median&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;Mean&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;3rd Qu.&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;Max&#x27;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        las<span class="operator">=</span><span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512212911555.png" alt="image-20220512212911555" style="zoom: 67%;" /></p>
+<blockquote>
+<p>关于文本显示不全问题，可以参考<a target="_blank" rel="noopener" href="https://helloseraphine.top/index.php/archives/560.html">关于R以及Rstudio的相关问题</a>，或者查看下面内容</p>
+</blockquote>
+<h3 id="条形图微调"><a href="#条形图微调" class="headerlink" title="条形图微调"></a>条形图微调</h3><p>随着条数的增多，标签可能会重叠或者消失，可以通过如下参数来调整：</p>
+<ul>
+<li><strong><code>cex.names</code>：（数值型）小于 1 的数值表示缩小标签字体大小</strong></li>
+<li><strong><code>names.arg</code>：（向量）允许自定义标签内容</strong></li>
+<li><strong><code>las=2</code>：旋转字体朝向</strong></li>
+</ul>
+<h2 id="棘状图"><a href="#棘状图" class="headerlink" title="棘状图"></a>棘状图</h2><p>这是一种特殊的条形图，<strong>棘状图对堆砌图进行重缩放，使得每个条形的总值为 1 ，而每一段数据则以比例来呈现。棘状图可以通过<code>vcd</code>包中的<code>spine()</code>来绘制</strong>，代码示例：</p>
+<blockquote>
+<p>注意：<code>spine</code>传递的参数必须是双向表，即<code>table</code></p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 棘状图</span></span><br><span class="line">library<span class="punctuation">(</span>vcd<span class="punctuation">)</span></span><br><span class="line">a <span class="operator">&lt;-</span> table<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">,</span>trees<span class="operator">$</span>Height<span class="punctuation">)</span></span><br><span class="line">spine<span class="punctuation">(</span>a<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512215113129.png" alt="image-20220512215113129" style="zoom:50%;" /></p>
+<h1 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h1><p>饼图随处可见，可以<strong>通过函数<code>pie</code>来创建</strong>，其函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pie<span class="punctuation">(</span>x<span class="punctuation">,</span> labels <span class="operator">=</span> <span class="built_in">names</span><span class="punctuation">(</span>x<span class="punctuation">)</span><span class="punctuation">,</span> edges <span class="operator">=</span> <span class="number">200</span><span class="punctuation">,</span> radius <span class="operator">=</span> <span class="number">0.8</span><span class="punctuation">,</span></span><br><span class="line">    clockwise <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> init.angle <span class="operator">=</span> <span class="keyword">if</span><span class="punctuation">(</span>clockwise<span class="punctuation">)</span> <span class="number">90</span> <span class="keyword">else</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    density <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> angle <span class="operator">=</span> <span class="number">45</span><span class="punctuation">,</span> col <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> border <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">    lty <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> main <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ...<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>x</code>：（数值型）表示每个扇形所占的面积</strong></li>
+<li><strong><code>labels</code>：（向量/单体取决于X）表示每个扇形的标签</strong></li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 饼图</span></span><br><span class="line">a <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span></span><br><span class="line">pie<span class="punctuation">(</span>a<span class="punctuation">,</span>labels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;苹果&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;西瓜&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;橘子&#x27;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220512215613638.png" alt="image-20220512215613638" style="zoom:80%;" /></p>
+<p>如果希望<strong>实现<code>3D</code>饼图的效果，则可以使用<code>plotrix</code>包中的<code>pie3D()</code>函数来实现</strong>，代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3D饼图</span></span><br><span class="line">library<span class="punctuation">(</span>plotrix<span class="punctuation">)</span></span><br><span class="line">a <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">2.2</span><span class="punctuation">)</span></span><br><span class="line">name <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;苹果&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;西瓜&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;橘子&#x27;</span><span class="punctuation">)</span></span><br><span class="line">pie3D<span class="punctuation">(</span>a<span class="punctuation">,</span>labels<span class="operator">=</span>name<span class="punctuation">,</span>explode <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>explode</code>：表示饼的分离程度</strong></li>
+</ul>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513184517721.png" alt="image-20220513184517721" style="zoom:50%;" /></p>
+<p>如上图，在不标注标签数值的情况下，我们的肉眼获取无法区分”西瓜”和”橘子”的大小区别，这个时候可以使用<strong>扇形图</strong>。它是<strong>通过<code>plotrix</code>包中的<code>fan.plot()</code>函数来实现的</strong>。代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3D饼图</span></span><br><span class="line">library<span class="punctuation">(</span>plotrix<span class="punctuation">)</span></span><br><span class="line">a <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">2.2</span><span class="punctuation">)</span></span><br><span class="line">name <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;苹果&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;西瓜&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;橘子&#x27;</span><span class="punctuation">)</span></span><br><span class="line">fan.plot<span class="punctuation">(</span>a<span class="punctuation">,</span>labels<span class="operator">=</span>name<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513190120549.png" alt="image-20220513190120549" style="zoom:50%;" /></p>
+<h1 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h1><p><strong>直方图是一种类似于条形图的图</strong>，它通过将X轴的值连续起来，然后Y值显示其高度，<strong>通过函数<code>hist()</code>函数来创建</strong>，函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hist<span class="punctuation">(</span>x<span class="punctuation">,</span> breaks <span class="operator">=</span> <span class="string">&quot;Sturges&quot;</span><span class="punctuation">,</span></span><br><span class="line">     freq <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> probability <span class="operator">=</span> <span class="operator">!</span>freq<span class="punctuation">,</span></span><br><span class="line">     include.lowest <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> right <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> fuzz <span class="operator">=</span> <span class="number">1e-7</span><span class="punctuation">,</span></span><br><span class="line">     density <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> angle <span class="operator">=</span> <span class="number">45</span><span class="punctuation">,</span> col <span class="operator">=</span> <span class="string">&quot;lightgray&quot;</span><span class="punctuation">,</span> border <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">     main <span class="operator">=</span> paste<span class="punctuation">(</span><span class="string">&quot;Histogram of&quot;</span> <span class="punctuation">,</span> xname<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">     xlim <span class="operator">=</span> <span class="built_in">range</span><span class="punctuation">(</span>breaks<span class="punctuation">)</span><span class="punctuation">,</span> ylim <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">     xlab <span class="operator">=</span> xname<span class="punctuation">,</span> ylab<span class="punctuation">,</span></span><br><span class="line">     axes <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> plot <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> labels <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span></span><br><span class="line">     nclass <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> warn.unused <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> ...<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>x</code>：数据值</strong></li>
+<li><strong><code>freq</code>：（布尔值）当值为<code>FLASE</code>表示根据概率密度而不是频数绘制图形</strong></li>
+<li><strong><code>breaks</code>：用于控制组的数量</strong></li>
+</ul>
+<p>在定义直方图中的单元时，默认将生成等距切分。代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直方图</span></span><br><span class="line">par<span class="punctuation">(</span>mfrow<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 普通直方图</span></span><br><span class="line">hist<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 概率密度直方图</span></span><br><span class="line">hist<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">,</span>freq <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 添加密度曲线</span></span><br><span class="line">hist<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">,</span>freq <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">lines<span class="punctuation">(</span>density<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513192146545.png" alt="image-20220513192146545" style="zoom: 67%;" /></p>
+<ul>
+<li><strong><code>density(x)</code>：生成密度数据</strong></li>
+</ul>
+<h1 id="核密度图"><a href="#核密度图" class="headerlink" title="核密度图"></a>核密度图</h1><p>核密度图时用于估计随机变量密度概率的一种非参数方法，绘制核密度图的方法为：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot<span class="punctuation">(</span>density<span class="punctuation">(</span>x<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 核密度图</span></span><br><span class="line">opar <span class="operator">&lt;-</span> par<span class="punctuation">(</span>no.readonly <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">par<span class="punctuation">(</span>mfrow<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 基本和密度图</span></span><br><span class="line">plot<span class="punctuation">(</span>density<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span><span class="punctuation">,</span>main<span class="operator">=</span><span class="string">&#x27;核密度图&#x27;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 颜色填充核密度图</span></span><br><span class="line">plot<span class="punctuation">(</span>density<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span><span class="punctuation">,</span>main<span class="operator">=</span><span class="string">&#x27;核密度图&#x27;</span><span class="punctuation">)</span></span><br><span class="line">polygon<span class="punctuation">(</span>density<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span><span class="punctuation">,</span>col <span class="operator">=</span> <span class="string">&#x27;black&#x27;</span><span class="punctuation">)</span></span><br><span class="line">par<span class="punctuation">(</span>opar<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>polygon</code>：绘制指定值下的多边形区域</strong>，可以理解为填充指定区域</li>
+</ul>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513193651584.png" alt="image-20220513193651584" style="zoom: 67%;" /></p>
+<p><strong>核密度可以通过分组来比较组间的差异，可以通过使用<code>sm</code>包中的<code>sm.density.compare()</code>来实现</strong>，具体方法和实现效果自行查询，此处不做说明。</p>
+<h1 id="箱线图"><a href="#箱线图" class="headerlink" title="箱线图"></a>箱线图</h1><p>箱线图又称为盒须图，<strong>通过绘制连续型变量的五数总括，即最小值，下四分位数（第25百分位数），中位数（第50百分位数），上四分位数（第75百分位数）以及最大值，描述了连续型变量的分布</strong>。</p>
+<p><strong>通过函数<code>boxplot</code>来实现</strong>，函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>formula<span class="punctuation">,</span> data <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ...<span class="punctuation">,</span> subset<span class="punctuation">,</span> na.action <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">        xlab <span class="operator">=</span> mklab<span class="punctuation">(</span>y_var <span class="operator">=</span> horizontal<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        ylab <span class="operator">=</span> mklab<span class="punctuation">(</span>y_var <span class="operator">=</span><span class="operator">!</span>horizontal<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">        add <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> ann <span class="operator">=</span> <span class="operator">!</span>add<span class="punctuation">,</span> horizontal <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span></span><br><span class="line">        drop <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;.&quot;</span><span class="punctuation">,</span> lex.order <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 箱线图</span></span><br><span class="line">boxplot<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513195516930.png" alt="image-20220513195516930" style="zoom:50%;" /></p>
+<p><strong>可以通过<code>boxplot.stats(x)</code>来输出用于构建图形的统计量</strong>。</p>
+<h2 id="并列箱线图"><a href="#并列箱线图" class="headerlink" title="并列箱线图"></a>并列箱线图</h2><p>可以通过传入参数的时候传入如下格式的参数即可：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>并列数据<span class="number">1</span><span class="operator">~</span>并列数据<span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>具体用法和实现效果自行查询，此处不做说明</p>
+</blockquote>
+<h2 id="小提琴图"><a href="#小提琴图" class="headerlink" title="小提琴图"></a>小提琴图</h2><p>有一种特殊的箱线图，<strong>它结合了核密度图</strong>，形成了新的图形即小提琴图。</p>
+<p>可以通过<code>vioplot</code>包中的<code>vioplot()</code>函数来绘制，函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vioplot<span class="punctuation">(</span>x<span class="punctuation">,</span> use.cols <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> ...<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 小提琴图</span></span><br><span class="line">library<span class="punctuation">(</span>vioplot<span class="punctuation">)</span></span><br><span class="line">vioplot<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513200708708.png" alt="image-20220513200708708" style="zoom:50%;" /></p>
+<blockquote>
+<p>关于小提琴图的更多说明，请自行查询</p>
+</blockquote>
+<h1 id="点图"><a href="#点图" class="headerlink" title="点图"></a>点图</h1><p>点图顾名思义，在图中根据数据绘制大量的点，可以<strong>通过<code>dotchart()</code>函数来实现</strong>，其函数原型如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dotchart<span class="punctuation">(</span>x<span class="punctuation">,</span> labels <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> groups <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> gdata <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> offset <span class="operator">=</span> <span class="number">1</span><span class="operator">/</span><span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">         ann <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;ann&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> xaxt <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;xaxt&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> frame.plot <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> <span class="built_in">log</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">         cex <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;cex&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> pt.cex <span class="operator">=</span> cex<span class="punctuation">,</span></span><br><span class="line">         pch <span class="operator">=</span> <span class="number">21</span><span class="punctuation">,</span> gpch <span class="operator">=</span> <span class="number">21</span><span class="punctuation">,</span> bg <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;bg&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">         color <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;fg&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> gcolor <span class="operator">=</span> par<span class="punctuation">(</span><span class="string">&quot;fg&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> lcolor <span class="operator">=</span> <span class="string">&quot;gray&quot;</span><span class="punctuation">,</span></span><br><span class="line">         xlim <span class="operator">=</span> <span class="built_in">range</span><span class="punctuation">(</span>x<span class="punctuation">[</span><span class="built_in">is.finite</span><span class="punctuation">(</span>x<span class="punctuation">)</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">         main <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> xlab <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ylab <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> ...<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>labels</code>：用来指点每个点的标签</strong></li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 点图</span></span><br><span class="line">dotchart<span class="punctuation">(</span>trees<span class="operator">$</span>Girth<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220513201323377.png" alt="image-20220513201323377" style="zoom:50%;" /></p>
+<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>关于 R 的基本图形如上所示，其更多的自定义参数可以查询官方文档，或者自行网络查询。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://l-seraphine.github.io/HelloSeraphine.io">Seraphine</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://l-seraphine.github.io/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-4-0%E3%80%91%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2/">https://l-seraphine.github.io/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-4-0%E3%80%91%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://l-seraphine.github.io/HelloSeraphine.io" target="_blank">Seraphineの小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/HelloSeraphine.io/tags/R%E8%AF%AD%E8%A8%80/">R语言</a></div><div class="post_share"><div class="social-share" data-image="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-13_20-17-33.jpg/Hexo" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-3-0%E3%80%91%E5%9B%BE%E5%BD%A2%E5%88%9D%E9%98%B6/"><img class="prev-cover" src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-09_11-03-41.jpg/Hexo" onerror="onerror=null;src='/HelloSeraphine.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【NEW-3.0】R-图形初阶</div></div></a></div><div class="next-post pull-right"><a href="/HelloSeraphine.io/2022/05/22/%E3%80%901-0%E3%80%91C-%E5%BC%95%E8%A8%80/"><img class="next-cover" src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2021-12-29_22-04-31.jpg/Hexo" onerror="onerror=null;src='/HelloSeraphine.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【1.0】C-引言</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-2-0%E3%80%91%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/" title="【NEW-2.0】R-创建数据集"><img class="cover" src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-07_15-44-21.jpg/Hexo" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">【NEW-2.0】R-创建数据集</div></div></a></div><div><a href="/HelloSeraphine.io/2022/05/22/%E3%80%90NEW-3-0%E3%80%91%E5%9B%BE%E5%BD%A2%E5%88%9D%E9%98%B6/" title="【NEW-3.0】R-图形初阶"><img class="cover" src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-05-09_11-03-41.jpg/Hexo" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">【NEW-3.0】R-图形初阶</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://thirdqq.qlogo.cn/g?b=qq&amp;nk=738232585&amp;s=100" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Seraphine</div><div class="author-info__description">如果有一天我可以在海里翱翔，就像一只小魔鬼鱼</div></div><div class="card-info-data site-data is-center"><a href="/HelloSeraphine.io/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/HelloSeraphine.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/HelloSeraphine.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/L-Seraphine"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/L-Seraphine" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:738232585@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">尝试搬迁至Hexo</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%A1%E5%BD%A2%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">条形图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%9D%A1%E5%BD%A2%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">简单条形图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%A0%8C%E6%9D%A1%E5%BD%A2%E5%9B%BE%E5%92%8C%E5%88%86%E7%BB%84%E6%9D%A1%E5%BD%A2%E5%9B%BE"><span class="toc-number">2.2.</span> <span class="toc-text">堆砌条形图和分组条形图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%87%E5%80%BC%E6%9D%A1%E5%BD%A2%E5%9B%BE"><span class="toc-number">2.3.</span> <span class="toc-text">均值条形图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E5%BD%A2%E5%9B%BE%E5%BE%AE%E8%B0%83"><span class="toc-number">2.3.1.</span> <span class="toc-text">条形图微调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%98%E7%8A%B6%E5%9B%BE"><span class="toc-number">2.4.</span> <span class="toc-text">棘状图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A5%BC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">饼图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">直方图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">核密度图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">箱线图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%88%97%E7%AE%B1%E7%BA%BF%E5%9B%BE"><span class="toc-number">6.1.</span> <span class="toc-text">并列箱线图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%8F%90%E7%90%B4%E5%9B%BE"><span class="toc-number">6.2.</span> <span class="toc-text">小提琴图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%82%B9%E5%9B%BE"><span class="toc-number">7.</span> <span class="toc-text">点图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#End"><span class="toc-number">8.</span> <span class="toc-text">End</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/HelloSeraphine.io/2022/05/22/%E3%80%9010-0%E3%80%91C-%E6%96%87%E4%BB%B6/" title="【10.0】C-文件"><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-02-20_20-30-07.jpg/Hexo" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/404.jpg'" alt="【10.0】C-文件"/></a><div class="content"><a class="title" href="/HelloSeraphine.io/2022/05/22/%E3%80%9010-0%E3%80%91C-%E6%96%87%E4%BB%B6/" title="【10.0】C-文件">【10.0】C-文件</a><time datetime="2022-05-22T13:50:11.000Z" title="发表于 2022-05-22 21:50:11">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/HelloSeraphine.io/2022/05/22/%E3%80%909-0%E3%80%91C-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E5%85%B1%E7%94%A8%E4%BD%93/" title="【9.0】C-结构体与共用体"><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-02-17_19-36-43.jpg/Hexo" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/404.jpg'" alt="【9.0】C-结构体与共用体"/></a><div class="content"><a class="title" href="/HelloSeraphine.io/2022/05/22/%E3%80%909-0%E3%80%91C-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E5%85%B1%E7%94%A8%E4%BD%93/" title="【9.0】C-结构体与共用体">【9.0】C-结构体与共用体</a><time datetime="2022-05-22T13:48:05.000Z" title="发表于 2022-05-22 21:48:05">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/HelloSeraphine.io/2022/05/22/%E3%80%908-0%E3%80%91C-%E6%8C%87%E9%92%88/" title="【8.0】C-指针"><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-02-02_15-53-53.jpg/Hexo" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/404.jpg'" alt="【8.0】C-指针"/></a><div class="content"><a class="title" href="/HelloSeraphine.io/2022/05/22/%E3%80%908-0%E3%80%91C-%E6%8C%87%E9%92%88/" title="【8.0】C-指针">【8.0】C-指针</a><time datetime="2022-05-22T13:44:32.000Z" title="发表于 2022-05-22 21:44:32">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/HelloSeraphine.io/2022/05/22/%E3%80%907-0%E3%80%91C-%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/" title="【7.0】C-预处理命令"><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-01-21_21-19-52.jpg/Hexo" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/404.jpg'" alt="【7.0】C-预处理命令"/></a><div class="content"><a class="title" href="/HelloSeraphine.io/2022/05/22/%E3%80%907-0%E3%80%91C-%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/" title="【7.0】C-预处理命令">【7.0】C-预处理命令</a><time datetime="2022-05-22T13:41:45.000Z" title="发表于 2022-05-22 21:41:45">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/HelloSeraphine.io/2022/05/22/%E3%80%906-0%E3%80%91C-%E5%87%BD%E6%95%B0/" title="【6.0】C-函数"><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/Snipaste_2022-01-18_15-14-47.jpg/Hexo" onerror="this.onerror=null;this.src='/HelloSeraphine.io/img/404.jpg'" alt="【6.0】C-函数"/></a><div class="content"><a class="title" href="/HelloSeraphine.io/2022/05/22/%E3%80%906-0%E3%80%91C-%E5%87%BD%E6%95%B0/" title="【6.0】C-函数">【6.0】C-函数</a><time datetime="2022-05-22T13:37:21.000Z" title="发表于 2022-05-22 21:37:21">2022-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Seraphine</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/HelloSeraphine.io/js/utils.js"></script><script src="/HelloSeraphine.io/js/main.js"></script><script src="/HelloSeraphine.io/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/HelloSeraphine.io/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comments-i35m01l78-l-seraphine.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
