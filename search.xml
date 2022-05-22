@@ -8,7 +8,7 @@
       <link href="/HelloSeraphine.io/2022/05/20/Test/"/>
       <url>/HelloSeraphine.io/2022/05/20/Test/</url>
       
-        <content type="html"><![CDATA[<h1 id="这是内容"><a href="#这是内容" class="headerlink" title="这是内容"></a>这是内容</h1><p>这也是内容，该文章带有头图</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="这是内容"><a href="#这是内容" class="headerlink" title="这是内容"></a>这是内容</h1><p>这也是内容，该文章带有头图</p><p>!!! warning<br>    这是一条采用默认标题的警告信息。</p>]]></content>
       
       
       
