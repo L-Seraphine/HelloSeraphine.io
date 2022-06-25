@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【C#高级编程】default和typeof运算符</title>
+      <link href="/2022/06/25/CSharp/CSharp/%E3%80%90C-%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E3%80%91default%E5%92%8Ctypeof%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+      <url>/2022/06/25/CSharp/CSharp/%E3%80%90C-%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E3%80%91default%E5%92%8Ctypeof%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这部分本来应该和泛型一起讨论，考虑到分类问题，遂单独拿出来记录。</p><h1 id="default运算符"><a href="#default运算符" class="headerlink" title="default运算符"></a>default运算符</h1><p>早在<code>C# 1</code>时代，<code>typeof()</code>运算符就已经出现了，它接收一个类型名称作为唯一操作数。<code>C# 2</code>加入了<code>default()</code>运算符，并且略微拓展了<code>typeof()</code>的用途。</p><p><strong><code>default</code>运算符功能比较简单，它是一元运算符，其操作数是类型名或者类型形参，返回值是该类型的默认值。</strong>当声明一个字段，但是没有为该字段立刻赋值时，该字段的值就是默认值。如果是引用类型，默认值是一个<code>null</code>引用。如果是非可空值类型，将返回对应类型的”0值”（0，0.0，0.0m,false,UTF-16编码单元的0等）；如果是可空值类型则返回类型的<code>null</code>值。</p><p><code>default</code>运算符可以用于类型形参以及提供了类型实参的泛型类型，例如如下都是合法的：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">default</span>(T)</span><br><span class="line"><span class="literal">default</span>(<span class="built_in">int</span>)</span><br><span class="line"><span class="literal">default</span>(<span class="built_in">string</span>)</span><br><span class="line"><span class="literal">default</span>(List&lt;T&gt;)</span><br></pre></td></tr></table></figure><p><code>default</code>运算符返回值的类型与操作数类型一致。<strong><code>default</code>常与泛型类型形参一起使用</strong>，因为对于非泛型类型可以通过其他方式获取<code>default</code>值。但是对于泛型类型来说，我们不确定该泛型的初始值是什么类型的，这个时候就需要使用<code>default</code>运算符了，代码示例：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">Last</span>&lt;<span class="title">T</span>&gt; (<span class="params">IEnumerable&lt;T&gt; source</span>)</span>&#123;</span><br><span class="line">    T ret = <span class="literal">default</span>(T);</span><br><span class="line">    <span class="keyword">foreach</span>(T item <span class="keyword">in</span> source)&#123;</span><br><span class="line">        ret = item;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="typeof运算符"><a href="#typeof运算符" class="headerlink" title="typeof运算符"></a>typeof运算符</h1><p><code>typeof</code>运算符的使用相对复杂一些，考虑到如下几种常见的情形：</p><ul><li>不涉及泛型，例如：<code>typeof(string)</code></li><li>涉及泛型但是不涉及类型形参，例如：<code>typeof(List&lt;int&gt;)</code></li><li>仅涉及类型形参，例如：<code>typeof(T)</code></li><li><code>typeof</code>操作数中有泛型，而且泛型作为类型形参出现，例如：<code>typeof(List&lt;TItem&gt;)</code></li><li>涉及泛型，但是操作数中没有出现类型实参，例如：<code>typeof(List&lt;&gt;)</code></li></ul><p>其中第一个场景最简单，且其用法基本没有变过。对于其他的场景需要进行考虑。<code>typeof</code>运算符的返回值是<code>Type</code>类型的值，而且<code>Type</code>类在经过拓展之后可以支持泛型。</p><p>要理解<code>typeof</code>运算符，一个简单的例子是<strong><code>typeof(List&lt;int&gt;)</code>，其返回值是<code>List&lt;int&gt;</code>的<code>Type</code>值，结果与调用<code>new List&lt;int&gt;().GetType()</code>相同</strong>。</p><p>现在来讨论<code>typeof(T)</code>，该表达式返回的是调用代码中<code>T</code>类型参数的<code>Type</code>。它的返回值永远是一个<strong>封闭的，已构造的类型</strong>，技术规范中将其描述为一个真正不包含任何类型形参的类型。</p><p>下面通过一个实例来展示<code>typeof(T)</code>和<code>typeof(List&lt;T&gt;)</code>，代码示例：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//程序入口</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    PrintType&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">    PrintType&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义方法</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">PrintType</span>&lt;<span class="title">T</span>&gt;()</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;typeof(T)= &#123;0&#125;&quot;</span>, <span class="keyword">typeof</span>(T));</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;typeof(T)= &#123;0&#125;&quot;</span>, <span class="keyword">typeof</span>(List&lt;T&gt;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>运行结果：</p><p><img src="https://wordpress-serverless-code-ap-beijing-1303234197.cos.ap-beijing.myqcloud.com/PicGo/image-20220625234056672.png" alt="image-20220625234056672" style="zoom:80%;" /></p><p>结果一幕了然，其中还展示了使用反射时泛型类型的命名格式：<code>List &#39;1(注是斜上点，Markdown字符冲突)&#39;</code>，表示这是一个命名为<code>List</code>的泛型类型，其度为 1 ，后面的方括号表示类型实参。</p><p>最后再说明一下<code>typeof(List&lt;&gt;)</code>。该表达式看起来缺少类型实参。<strong>这种写法只有在<code>typeof</code>运算符中才有效</strong>，且指向了泛型类型定义。对于度为 1 的泛型，其书写格式为<code>TypeName&lt;&gt;</code>，<strong>如果其度大于1，每增加一个度，就加一个逗号，例如要获取<code>D&lt;T1,T2&gt;</code>泛型类型定义，则表达式为： <code>Typeof(TypeName&lt;,&gt;)</code></strong>。</p><h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>说实话，这两种运算符，在实际应用过程并没有那么的应用，是一种数据获取手段，此处单独摘录说明，看看我接下来有没有时间写一下<code>C#</code>多线程的内容。</p><p>就这样，祝晚安。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CSharp </category>
+          
+          <category> CSharp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【C#高级编程】泛型</title>
       <link href="/2022/06/24/CSharp/CSharp/%E3%80%90C-%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E3%80%91%E6%B3%9B%E5%9E%8B/"/>
       <url>/2022/06/24/CSharp/CSharp/%E3%80%90C-%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E3%80%91%E6%B3%9B%E5%9E%8B/</url>
@@ -49,9 +76,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> 设计模式 </tag>
+            
+            <tag> C# </tag>
             
             <tag> UML </tag>
             
@@ -78,9 +105,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> 设计模式 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
       
@@ -341,9 +368,9 @@
       
         <tags>
             
-            <tag> 整活 </tag>
-            
             <tag> C# </tag>
+            
+            <tag> 整活 </tag>
             
         </tags>
       
